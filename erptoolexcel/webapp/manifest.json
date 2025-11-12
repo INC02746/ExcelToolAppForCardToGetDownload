@@ -1,0 +1,115 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "com.ranpak.erptoolexcel",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.7",
+      "toolsId": "446fd268-c95d-467e-ad1e-2d14acd1b4b7"
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Exceltool-display": {
+          "semanticObject": "Exceltool",
+          "action": "display",
+          "title": "{{Exceltool-display.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.140.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.ranpak.erptoolexcel.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.ranpak.erptoolexcel.view",
+        "async": true,
+        "viewPath": "com.ranpak.erptoolexcel.view"
+      },
+      "routes": [
+        {
+          "name": "Routeerptoolxlsx",
+          "pattern": ":?query:",
+          "target": [
+            "Targeterptoolxlsx"
+          ]
+        }
+      ],
+      "targets": {
+        "Targeterptoolxlsx": {
+          "id": "erptoolxlsx",
+          "name": "erptoolxlsx"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.ranpak.erptoolexcel.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "com-ranpak-excelerptool"
+  }
+}

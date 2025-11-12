@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: com-ranpak-excelerptool
+description: Excel ERP Tool
+version: 0.0.1
+modules:
+- name: com-ranpak-excelerptool-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: com-ranpak-excelerptool-destination-service
+    parameters:
+      content-target: true
+  - name: com-ranpak-excelerptool-repo-host
+    parameters:
+      service-key:
+        name: com-ranpak-excelerptool-repo-host-key
+  - name: com-ranpak-excelerptool-uaa
+    parameters:
+      service-key:
+        name: com-ranpak-excelerptool-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: com-ranpak-excelerptool_html_repo_host
+          ServiceInstanceName: com-ranpak-excelerptool-html5-service
+          ServiceKeyName: com-ranpak-excelerptool-repo-host-key
+          sap.cloud.service: com-ranpak-excelerptool
+        - Authentication: OAuth2UserTokenExchange
+          Name: com-ranpak-excelerptool_uaa
+          ServiceInstanceName: com-ranpak-excelerptool-xsuaa-service
+          ServiceKeyName: com-ranpak-excelerptool-uaa-key
+          sap.cloud.service: com-ranpak-excelerptool
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: com-ranpak-excelerptool-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: com-ranpak-excelerptool-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comranpakerptoolexcel.zip
+      name: comranpakerptoolexcel
+      target-path: resources/
+- name: comranpakerptoolexcel
+  type: html5
+  path: erptoolexcel
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: com-ranpak-excelerptool-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: com-ranpak-excelerptool-destination-service
+    service-plan: lite
+- name: com-ranpak-excelerptool-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: com-ranpak-excelerptool-xsuaa-service
+    service-plan: application
+- name: com-ranpak-excelerptool-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: com-ranpak-excelerptool-html5-service
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
