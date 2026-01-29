@@ -1,6 +1,6 @@
 _schema-version: "3.2"
 ID: com-ranpak-excelerptool
-description: Excel ERP Tool
+description: Excel EPR Tool
 version: 0.0.1
 modules:
 - name: com-ranpak-excelerptool-destination-content

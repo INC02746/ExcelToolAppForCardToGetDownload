@@ -9,7 +9,7 @@
 |**Service Type**<br>None|
 |**Service URL**<br>N/A|
 |**Module Name**<br>erptoolexcel|
-|**Application Title**<br>ERP Tool|
+|**Application Title**<br>EPR Tool|
 |**Namespace**<br>com.ranpak|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.140.0|

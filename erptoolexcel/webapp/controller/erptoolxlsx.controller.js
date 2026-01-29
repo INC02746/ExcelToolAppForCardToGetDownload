@@ -12,7 +12,7 @@ sap.ui.define([
             var cardId = "com.ranpak.erptoolexcel";
             cardId = cardId.replace(/\./g, "/");
 
-            var oPath = sap.ui.require.toUrl(cardId + "/artifacts") + "/Batch-calculation-paper.xlsx";
+            var oPath = sap.ui.require.toUrl(cardId + "/artifacts") + "/EPR-Packaging-weights-Calculator.xlsx";
 
             try {
                 const response = await fetch(oPath,{ cache: "no-store" });
@@ -24,7 +24,7 @@ sap.ui.define([
                 const link = document.createElement("a");
                 const url = window.URL.createObjectURL(blob);
                 link.href = url;
-                link.download = "Batch-calculation-paper.xlsx ";
+                link.download = "EPR-Packaging-weights-Calculator.xlsx";
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);

@@ -6,7 +6,7 @@
     "metadataFilename": "",
     "serviceUrl": "N/A",
     "appName": "erptoolexcel",
-    "appTitle": "ERP Tool",
+    "appTitle": "EPR Tool",
     "appDescription": "An SAP Fiori application.",
     "appNamespace": "com.ranpak",
     "ui5Theme": "sap_horizon",
